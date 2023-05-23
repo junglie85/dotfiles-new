@@ -242,14 +242,21 @@ alias ls='ls $LS_OPTIONS'
 export EDITOR=vi
 
 # Vulkan
-source ~/.vulkan/1.3.243.0/setup-env.sh
+if [[ -f ~/.vulkan/1.3.243.0/setup-env.sh ]]; then
+  source ~/.vulkan/1.3.243.0/setup-env.sh
+fi
 
 # Enable bash completions in zsh
 autoload -U bashcompinit
 bashcompinit
 
-# Created by `pipx` on 2023-05-10 19:33:00
-export PATH="$PATH:/home/junglie85/.local/bin"
-eval "$(register-python-argcomplete pipx)"
+if [[ $(which pipx &> /dev/null) ]]; then
+  echo "Hmmph"
+  # Created by `pipx` on 2023-05-10 19:33:00
+  export PATH="$PATH:/home/junglie85/.local/bin"
+  eval "$(register-python-argcomplete pipx)"
+fi
 
-source <(plz --completion_script)
+if [[ $(which plz &> /dev/null) ]]; then
+  source <(plz --completion_script)
+fi
