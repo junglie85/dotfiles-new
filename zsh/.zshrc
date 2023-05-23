@@ -82,9 +82,9 @@ export LESS=-R
 
 ## Plugins section: Enable fish style features
 # Use syntax highlighting
-source ~/.dotfiles/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
+source ~/.dotfiles/zsh/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
 # Use history substring search
-source ~/.dotfiles/zsh-history-substring-search/zsh-history-substring-search.zsh
+source ~/.dotfiles/zsh/zsh-history-substring-search/zsh-history-substring-search.zsh
 # bind UP and DOWN arrow keys to history substring search
 zmodload zsh/terminfo
 bindkey "$terminfo[kcuu1]" history-substring-search-up
@@ -93,8 +93,8 @@ bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 
 # Offer to install missing package if command is not found
-if [[ -r ~/.dotfiles/zsh-command-not-found/command-not-found.plugin.zsh ]]; then
-    source ~/.dotfiles/zsh-command-not-found/command-not-found.plugin.zsh
+if [[ -r ~/.dotfiles/zsh/zsh-command-not-found/command-not-found.plugin.zsh ]]; then
+    source ~/.dotfiles/zsh/zsh-command-not-found/command-not-found.plugin.zsh
     export PKGFILE_PROMPT_INSTALL_MISSING=1
 fi
 
@@ -208,8 +208,8 @@ alias ls='ls $LS_OPTIONS'
 () {
   emulate -L zsh
 
-  source ~/.dotfiles/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
-  source ~/.dotfiles/zsh-autosuggestions/zsh-autosuggestions.zsh
+  source ~/.dotfiles/zsh/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
+  source ~/.dotfiles/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
   # Determine terminal capabilities.
   {
@@ -228,16 +228,18 @@ alias ls='ls $LS_OPTIONS'
 
   if [[ $USE_POWERLINE == false ]]; then
     # Use 8 colors and ASCII.
-    source ~/.dotfiles/p10k-portable.zsh
+    source ~/.dotfiles/zsh/p10k-portable.zsh
     ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=black,bold'
   else
     # Use 256 colors and UNICODE.
-    source ~/.dotfiles/p10k.zsh
+    source ~/.dotfiles/zsh/p10k.zsh
     ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=244'
   fi
 }
 
 ###################### MY STUFF ######################
+
+export EDITOR=vi
 
 # Vulkan
 source ~/.vulkan/1.3.243.0/setup-env.sh

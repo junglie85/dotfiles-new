@@ -1,0 +1,31 @@
+[init]
+	defaultBranch = main
+[user]
+	name = junglie85
+	email = junglie85@gmail.com
+[credential]
+	helper = 
+	helper = /usr/local/bin/git-credential-manager
+	credentialStore = =
+	credentialStore = =
+	credentialStore = secretservice
+[credential "https://dev.azure.com"]
+	useHttpPath = true
+[filter "lfs"]
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+[pull]
+	rebase = true
+[alias]
+    br = branch
+    co = checkout
+    st = status
+    staged = diff --staged
+    prune-branches = fetch origin --prune
+    l  = log --pretty='format:%C(yellow)%h %C(blue)%ad %C(reset)%s%C(red)%d %C(green)%an%C(reset), %C(cyan)%ar' --date=short
+    ld = log --pretty='format:%C(yellow)%h %C(blue)%ad %C(reset)%s%C(red)%d %C(green)%an%C(reset), %C(cyan)%ar' --date=short --since=1.days
+    lw = log --pretty='format:%C(yellow)%h %C(blue)%ad %C(reset)%s%C(red)%d %C(green)%an%C(reset), %C(cyan)%ar' --date=short --since=1.weeks
+    cleanup = !git branch -vv | grep ': gone]' | awk '{print $1}' | xargs git branch -D
+    churn= !git log --all -M -C --name-only --format='format:' "$@" | sort | grep -v '^$' | uniq -c | sort -n
