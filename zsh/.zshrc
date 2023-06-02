@@ -250,13 +250,22 @@ fi
 autoload -U bashcompinit
 bashcompinit
 
-if [[ $(which pipx &> /dev/null) ]]; then
-  echo "Hmmph"
+if type pipx &> /dev/null; then
   # Created by `pipx` on 2023-05-10 19:33:00
   export PATH="$PATH:/home/junglie85/.local/bin"
   eval "$(register-python-argcomplete pipx)"
 fi
 
-if [[ $(which plz &> /dev/null) ]]; then
+if type plz > /dev/null; then
   source <(plz --completion_script)
+fi
+
+# aliases
+alias -g ls="ls -p -G --color=always"
+alias -g la="ls -A"
+alias -g ll="ls -l"
+alias -g lla="ll -A"
+if type exa > /dev/null; then
+  alias -g ll="exa -l -g --icons"
+  alias -g lla="ll -a"
 fi
